@@ -27,7 +27,19 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        week03Variables()
     }
+}
+
+private fun week03Variables() {
+    println("week 03: Variables")
+    val courserName = "mobile name" // java final keyword
+    // courserName="username" // error
+
+    var week = 2
+    week = 3
+    println("course : $courserName")
+    println("week : $week")
 }
 
 @Composable
