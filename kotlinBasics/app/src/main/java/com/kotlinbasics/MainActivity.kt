@@ -1,3 +1,4 @@
+
 package com.kotlinbasics
 
 import android.os.Bundle
@@ -18,9 +19,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
             KotlinBasicsTheme {
-                Scaffold( modifier = Modifier.fillMaxSize() ) { innerPadding ->
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
@@ -28,12 +30,24 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+        // 내가 작성한 실습 코드
         week03Variables()
         week03Functions()
         week04Classes()
         week04Collections()
+
+        // GitHub 수업 코드 (필요할 때 주석 해제)
+        // teacherWeek03Variables()
+        // teacherWeek03Functions()
+        // teacherWeek04Classes()
+        // teacherWeek04Collections()
     }
 }
+
+// ====================================
+// 내가 작성한 코드
+// ====================================
 
 private fun week03Functions() {
 
@@ -42,28 +56,30 @@ private fun week03Functions() {
     println(greet("Kim"))
 
     fun printItem(vararg item: String) {
-        for (value in item) println("$value")
+        for (value in item) println(value)
     }
 
-    val printItem = arrayOf("a", "b", "c")
+    val items = arrayOf("a", "b", "c")
+    printItem(*items)
 
     fun printAll(vip: Boolean, name: String) {
         print("$vip, $name")
     }
+
     printAll(false, "Kim")
-    //printAll("Kil", vip)
-    printAll(name="An", vip=true)
-    println("");
+    printAll(name = "An", vip = true)
+    println()
 }
 
 private fun week03Variables() {
     Log.d("week03", "==week03==")
+
     val userName = "AAAA"
-    //userName = "BBB"
+    // userName = "BBB"
+
     var value = "AAA"
     value = "bbb"
 
-    //var nickName: String = null
     var nickName: String? = null
     nickName = "Kim"
 
@@ -80,7 +96,7 @@ private fun week04Classes() {
         }
 
         fun nextYear() {
-            age++;
+            age++
             Log.d("week04", "next age : $age")
         }
     }
@@ -96,10 +112,12 @@ private fun week04Classes() {
             this.weight = weight
             Log.d("week04", "$species 의 무게 : $weight")
         }
-        fun sound(){
+
+        fun sound() {
             Log.d("week04", "$species 가 소리를 냅니다.")
         }
     }
+
     val dog1 = Animal("푸들")
     val dog2 = Animal("마티즈", 4.2)
 
@@ -109,6 +127,7 @@ private fun week04Classes() {
 
 private fun week04Collections() {
     println("=====week04=====")
+
     val char_list = listOf("arona", "plana", "kei")
     val mutable_char = mutableListOf("noa", "yuuka")
 
@@ -124,13 +143,142 @@ private fun week04Collections() {
         println("i like $ch")
     }
 
-    dict.forEach{ (name, score) ->
-    println("$name : $score")}
+    dict.forEach { (name, score) ->
+        println("$name : $score")
+    }
 
-    mutable_char.forEach{ name ->
+    mutable_char.forEach { name ->
         println("i love $name")
     }
 }
+
+// ====================================
+// GitHub에서 가져온 수업 코드
+// 함수 이름을 변경하여 충돌 방지
+// ====================================
+
+private fun teacherWeek03Variables() {
+    println("Week 03 : Variables")
+
+    val courseName = "Mobile Programming"
+    // courseName = "DataStructure"
+
+    var week = 2
+    week = 3
+
+    println("Course : $courseName")
+    println("Week : $week")
+
+    println("========= Kotlin Variables =========")
+
+    val name = "Android"
+    var version = 8
+
+    println("Hi $name $version")
+
+    val age: Int = 24
+    val height: Double = 177.7
+    val isStudent: Boolean = false
+
+    println("Age: $age, Height: $height, Student: $isStudent")
+
+    var nickname: String? = null
+    nickname = "mirae"
+
+    println("Nickname: $nickname ${nickname?.length}")
+}
+
+private fun teacherWeek03Functions() {
+    println("========= Kotlin Functions =========")
+
+    fun printAll(vip: Boolean, name: String) {
+        println("$vip, $name")
+    }
+
+    fun printMany(vararg msg: String) {
+        for (m in msg) println(m)
+    }
+
+    printAll(true, "dy")
+    printAll(name = "mirae", vip = true)
+
+    printMany("A", "B", "C", "D")
+}
+
+private fun teacherWeek04Classes() {
+    Log.d("KotlinWeek04", "== Kotlin Classes ==")
+
+    class Person(val name: String, var age: Int) {
+        fun introduce() {
+            Log.d("KotlinWeek04", "안녕하세요, $name ($age 세)입니다.")
+        }
+
+        fun birthday() {
+            age++
+            Log.d("KotlinWeek04", "$name 의 생일! 이제 $age 세...")
+        }
+    }
+
+    val person1 = Person("홍길동", 27)
+    person1.introduce()
+    person1.birthday()
+
+    class Animal(var species: String) {
+        var weight: Double = 0.0
+
+        constructor(species: String, weight: Double) : this(species) {
+            this.weight = weight
+            Log.d("KotlinWeek04", "$species 의 무게 : $weight kg")
+        }
+
+        fun makeSound() {
+            Log.d("KotlinWeek04", "$species 가 소리를 냅니다.")
+        }
+    }
+
+    val puppy = Animal("웰시코기", 10.5)
+    val puppy2 = Animal("골든리트리버")
+
+    puppy.makeSound()
+    puppy2.makeSound()
+}
+
+private fun teacherWeek04Collections() {
+    println("========= Kotlin Collections =========")
+
+    val fruits = listOf("apple", "banana", "orange")
+    val mutableFruits = mutableListOf("kiwi", "watermelon")
+
+    // fruits.add("kiwi")
+    mutableFruits.add("banana")
+
+    println("Fruits: $fruits")
+    println("Mutable Fruits: $mutableFruits")
+
+    val scores = mapOf(
+        "Kim" to 100,
+        "Park" to 96,
+        "Lee" to 97
+    )
+
+    println("Scores: $scores")
+
+    for (fruit in mutableFruits) {
+        println("I like $fruit")
+    }
+
+    scores.forEach { (name, score) ->
+        println("$name scored $score")
+    }
+
+    fruits.forEach { fruit ->
+        println(fruit)
+    }
+}
+
+// ====================================
+// Compose UI
+// ====================================
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
